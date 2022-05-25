@@ -48,3 +48,19 @@ test("works when you click on the left arrow", () => {
   expect(queryByAltText("Photo by Pratik Patel on Unsplash")).not.toBeInTheDocument();
 
 })
+
+test("left arrow does not render on first image", () => {
+  const {queryByTestId} = render(<Carousel/>);
+
+  expect(queryByTestId("left-arrow")).not.toBeInTheDocument();
+})
+
+test("right arrow does not render on first image", () => {
+  const {queryByTestId} = render(<Carousel/>);
+
+  const rightArrow = queryByTestId("right-arrow");
+  fireEvent.click(rightArrow);
+  fireEvent.click(rightArrow);
+
+  expect(rightArrow).not.toBeInTheDocument();
+})
